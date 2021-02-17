@@ -31,9 +31,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 	
     @SuppressWarnings("unchecked")
-	@Override
 	public List<Employee> findAllEmployees() {
-		List<Employee> emplList = new ArrayList<>();
+		List<Employee> emplList = new ArrayList<Employee>();
 		try {
 	        currentSession = sessionFactory.openSession();
 	        emplList = currentSession.createQuery("From Employee").getResultList();
@@ -48,9 +47,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return emplList;
 	}
 
-	@Override
 	public List<Employee> findEmployeesByUsername(String username) {
-		List<Employee> emplList = new ArrayList<>();
+		List<Employee> emplList = new ArrayList<Employee>();
 		try {
 	        currentSession = sessionFactory.openSession();
 	        String searchCriteria = "username";
@@ -69,7 +67,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return emplList;
 	}
 
-	@Override
 	public Employee findEmployeeById(int employeeId) {
 		Employee employee = null;
 		try {
@@ -88,7 +85,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return employee;
 	}
 
-	@Override
 	public Employee findEmployeeByUsername(String username) {
 		// TODO Auto-generated method stub
 		Employee employee = null;
@@ -108,7 +104,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return employee;
 	}
 
-	@Override
 	public Employee findEmployeeByEmail(String email) {
 		// TODO Auto-generated method stub
 		Employee employee = null;
@@ -128,7 +123,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return employee;
 	}
 
-	@Override
 	public int addEmployee(Employee employee) {
 		// TODO Auto-generated method stub
 		int id = 0;
@@ -152,7 +146,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return id;
 	}
 
-	@Override
 	public boolean updateEmployee(Employee employee) {
 		// TODO Auto-generated method stub
 		try {
@@ -177,7 +170,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 	}
 
-	@Override
 	public boolean deleteEmployeeById(int employeeId) {
 		try {
 			// Getting Session Object From SessionFactory
@@ -207,7 +199,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 	}
 
-	@Override
 	public boolean deleteEmployeeByUsername(String username) {
 		// TODO Auto-generated method stub
 		try {

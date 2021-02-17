@@ -79,7 +79,7 @@ public class EmployeeServiceTest {
 		 * findAllEmployees method. This means we can control the 
 		 * output when this method is called And that 
 		 */
-		List<Employee> mock_empls = new ArrayList<>(Arrays.asList(
+		List<Employee> mock_empls = new ArrayList<Employee>(Arrays.asList(
 				new Employee("m1","m1","m1","m1", "m1", 18,2),
 				new Employee("e11","e11","e11","e11", "e11", 14,1),
 				new Employee("e12","e12","e12","e12", "e12", 3,1))
@@ -104,7 +104,7 @@ public class EmployeeServiceTest {
 
 	@Test 
 	public void testFindEmployeesByUsername() {
-		List<Employee> mock_empls = new ArrayList<>(Arrays.asList(
+		List<Employee> mock_empls = new ArrayList<Employee>(Arrays.asList(
 				new Employee("e11","e11","e11","e11", "e11", 14,1),
 				new Employee("e12","e12","e12","e12", "e12", 3,1))
 				);
