@@ -11,8 +11,10 @@
         <!-- hide the username and password
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">password2021</property>
-		-->
+		-->        
+		 
 		<property name="hibernate.connection.provider_class">com.revature.util.NewDBConnectionProvider</property>
+            
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
@@ -27,6 +29,11 @@
   
         <!-- Annotated entity classes -->
         <mapping class="com.revature.model.Employee"/>
-        
+        <mapping class="com.revature.model.EmployeeRole"/>
+        <mapping class="com.revature.model.EmployeeMgr"/>
+        <mapping class="com.revature.model.EmployeeMgrId"/>
+        <mapping class="com.revature.model.ReimbReqStatus"/>
+        <mapping class="com.revature.model.ReimbRequest"/>
+        <mapping class="com.revature.model.ReimbReqDetail"/>        
     </session-factory>
 </hibernate-configuration>

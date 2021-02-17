@@ -29,6 +29,7 @@ public class NewDBConnectionProvider extends C3P0ConnectionProvider {
 		try {			
 			props.put(Environment.USER, username);
 			props.put(Environment.PASS, password);
+			LOGGER.debug("Already get DB connection");
 			super.configure(props);
 		}catch(HibernateException e) {
 			e.printStackTrace();

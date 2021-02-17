@@ -14,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -72,6 +73,7 @@ public class EmployeeServiceTest {
 		MockitoAnnotations.openMocks(this);
 	}
 	
+	@Ignore
 	@Test 
 	public void testfindAllEmployees() {
 		/*
@@ -91,6 +93,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findAllEmployees()");
 	}
 	
+	@Ignore
 	@Test
 	public void testFindEmployeeById() {
 		int employeeId = 2;
@@ -102,6 +105,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findEmployeeById()");
 	}
 
+	@Ignore
 	@Test 
 	public void testFindEmployeesByUsername() {
 		List<Employee> mock_empls = new ArrayList<Employee>(Arrays.asList(
@@ -115,6 +119,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findEmployeesByUsername()");
 	}
 	
+	@Ignore
 	@Test
 	public void testFindEmployeeByUsername() {
 		String username = "e11";
@@ -126,6 +131,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findEmployeeByUsername()");
 	}
 	
+	@Ignore
 	@Test
 	public void testFindEmployeeByEmail() {
 		String email = "e11";
@@ -137,6 +143,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findEmployeeByEmail()");
 	}
 	
+	@Ignore
 	@Test
 	public void testAddEmployee() {
 		Employee employee = new Employee("e11","e11","e11","e11", "e11", 14,1);
@@ -146,6 +153,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for addEmployee()");
 	}
 		
+	@Ignore
 	@Test
 	public void testUpdateEmployee() {
 		Employee employee = new Employee("e11","e11","e11","e11", "e11", 14,1);

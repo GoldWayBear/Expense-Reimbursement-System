@@ -14,7 +14,7 @@ import javax.persistence.Table;
  *
  */
 @Entity(name="EmployeeMgr")
-@Table(name="empl_mgr")
+@Table(name="empl_mgr" ,schema="project1")
 public class EmployeeMgr implements Serializable {
 	/**
 	 * 

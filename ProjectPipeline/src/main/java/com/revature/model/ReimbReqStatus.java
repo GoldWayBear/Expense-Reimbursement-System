@@ -15,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity(name="ReimbReqStatus")
-@Table(name="reimb_req_status")
+@Table(name="reimb_req_status" ,schema="project1")
 public class ReimbReqStatus implements Serializable{
 
 	/**

@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.HibernateException;
+//import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+//import org.hibernate.Transaction;
 
 import com.revature.model.Employee;
 import com.revature.util.HibernateUtil;
@@ -129,6 +129,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		try {
 	        currentSession = sessionFactory.openSession();
 	        currentSession.beginTransaction();
+	        LOGGER.debug(currentSession.isConnected());
+	        System.out.println("currentSession connected:"+currentSession.isConnected());
 	        currentSession.save(employee);
 	        currentSession.getTransaction().commit();
 			id = employee.getEmployeeId(); 
@@ -140,7 +142,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			}
 			e.printStackTrace();
 		}finally {
-			if(currentSession != null)
+			//if(currentSession != null)
 				currentSession.close();			
 		}
 		return id;

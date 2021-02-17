@@ -4,7 +4,7 @@
 package com.revature.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity(name="ReimbReqDetail")
-@Table(name="reimb_req_detail")
+@Table(name="reimb_req_detail" ,schema="project1")
 public class ReimbReqDetail implements Serializable {
 
 	/**
@@ -34,12 +34,15 @@ public class ReimbReqDetail implements Serializable {
 	private Integer reimbId;
 	@Column(name="location")
 	private String location;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name="requestDate")
-	private LocalDate requestDate;
+	private Date requestDate;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name="approvalDate")
-	private LocalDate approvalDate;
+	private Date approvalDate;
+	
 	@Column(name="cost")
 	private Double cost;
 	@Column(name="description")
@@ -53,7 +56,7 @@ public class ReimbReqDetail implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReimbReqDetail(String location, LocalDate requestDate, LocalDate approvalDate, Double cost,
+	public ReimbReqDetail(String location, Date requestDate, Date approvalDate, Double cost,
 			String description, byte[] receipt) {
 		super();
 		this.location = location;
@@ -80,19 +83,19 @@ public class ReimbReqDetail implements Serializable {
 		this.location = location;
 	}
 
-	public LocalDate getRequestDate() {
+	public Date getRequestDate() {
 		return requestDate;
 	}
 
-	public void setRequestDate(LocalDate requestDate) {
+	public void setRequestDate(Date requestDate) {
 		this.requestDate = requestDate;
 	}
 
-	public LocalDate getApprovalDate() {
+	public Date getApprovalDate() {
 		return approvalDate;
 	}
 
-	public void setApprovalDate(LocalDate approvalDate) {
+	public void setApprovalDate(Date approvalDate) {
 		this.approvalDate = approvalDate;
 	}
 

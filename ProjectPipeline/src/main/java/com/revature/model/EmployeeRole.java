@@ -4,28 +4,28 @@
 package com.revature.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  * @author Jinwei Xiong
  *
  */
-@Entity(name="EmployeeRole")
-@Table(name="empl_role")
+@Entity
+@Table(name="empl_role" ,schema="project1")
 public class EmployeeRole implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	//@Column(name="roleId")
+	@Column(name="roleId")
 	private Integer roleId;
 	@Column(name="role")
 	private String role;

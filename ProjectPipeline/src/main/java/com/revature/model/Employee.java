@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 
 @Entity(name = "Employee")
-@Table(name = "employee")
+@Table(name = "employee" ,schema="project1")
 public class Employee implements Serializable {
 	/**
 	 * 
