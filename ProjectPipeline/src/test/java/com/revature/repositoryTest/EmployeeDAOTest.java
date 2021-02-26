@@ -135,7 +135,7 @@ public class EmployeeDAOTest {
 	}
 	
 	//passed
-	@Ignore
+	//@Ignore
 	@Test 
 	public void testFindEmployeeByUsername() {	
 		String username = "e11";
