@@ -6,6 +6,7 @@ package com.revature.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -16,10 +17,10 @@ import org.hibernate.service.ServiceRegistry;
  * @author Jinwei Xiong
  *
  */
-public class HibernateUtil {
-	public static SessionFactory sessionFactory;
-	private static final Logger LOGGER = LogManager.getFormatterLogger(HibernateUtil.class);
-	private HibernateUtil() {
+public class HibernateSessionFactory {
+	private static SessionFactory sessionFactory;
+	private static final Logger LOGGER = LogManager.getFormatterLogger(HibernateSessionFactory.class);
+	private HibernateSessionFactory() {
 		
 	}
     public static synchronized SessionFactory getSessionFactory() {
@@ -49,6 +50,7 @@ public class HibernateUtil {
                 sessionFactory = configuration.buildSessionFactory(builder.build());
                 */
             	
+            	
             	ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .configure("hibernate.cfg.xml")
                         .build();
@@ -56,7 +58,8 @@ public class HibernateUtil {
                 sessionFactory = new MetadataSources( serviceRegistry )
                             .buildMetadata()
                             .buildSessionFactory();
-                
+                            	
+        		
             }catch(HibernateException e) {
             	e.printStackTrace();
             	LOGGER.error("Error creating Session: ",e);
@@ -65,6 +68,19 @@ public class HibernateUtil {
         return sessionFactory;
     }	
     
+    
+	public static Session getSession() {
+		if(sessionFactory == null) {
+			sessionFactory = new Configuration().configure()
+					.setProperty("hibernate.connection.url", System.getenv("dburl"))
+					.setProperty("hibernate.connection.username", System.getenv("dbusername"))
+					.setProperty("hibernate.connection.password", System.getenv("dbpassword"))
+					.buildSessionFactory();
+		}
+		
+		return sessionFactory.getCurrentSession();
+	}
+	
     public static void closeFactory() {
         if (sessionFactory != null) {
             try {

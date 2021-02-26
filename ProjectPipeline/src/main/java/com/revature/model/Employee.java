@@ -22,7 +22,7 @@ public class Employee implements Serializable {
 	@Id //primary key
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer employeeId;
-	@Column(name="username", nullable=false)
+	@Column(name="username")
 	private String username;
 	@Column(name="password")
 	private String password;

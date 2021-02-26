@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reimbursement System</title>
+	<meta charset="UTF-8"/>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+	<link rel="stylesheet" href="/ProjectPipeline/styles/reimb.css"> 
+	
+<style>
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  left: 25%;
+  max-width: 400px;
+  padding: 4px;
+  background-color: white;
+  height:100%;
+  
+  column-gap: 10em;
+}
+</style>	
+</head>
+
+<body>
+	<div class="navbar">
+	  <div class="dropdown">
+	    <button class="dropbtn">Reimbursement 
+	      <i class="fa fa-caret-down"></i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a href="/ProjectPipeline/webpages/employee/newRequest.html">New Request</a>
+	      <a href="/ProjectPipeline/webpages/employee/home.html">Request Info</a>
+	    </div>
+	  </div> 
+		  <a href="/ProjectPipeline/app/employee/profile">Profile</a> 
+	  	  <a href="/ProjectPipeline/app/logout">Log out</a>
+	  <div style="margin:auto; color: white;text-align:right;"> <h2>Employee's page</h2></div>
+	</div>
+
+	<!-- Header -->
+	<header>
+		<div class="bg-img">
+			<div>
+			<h2 style ="color:white;">Reimbursement System<small style ="color:white;">--request detail</small></h2>
+			</div>
+		  	<div class="container">
+		  		<table>
+		  			<tr>	  			
+		  				<td><b>Request Id:</b></td>
+		  				<td id="reimbReqId"></td>
+		  			</tr>
+		  			<tr>
+		  				<td><b>Employee Id:</b></td>
+		  				<td id="employeeId"></td>
+		  			</tr>
+		  			<tr>  			
+		  				<td><b>Location:</b></td>
+		  				<td id="location"></td>
+		  			</tr>	  			
+		  				<td><b>Cost:</b></td>
+		  				<td id="cost"></td>
+		  			</tr>
+		  			<tr>
+		  				<td><b>Description:</b></td>
+		  				<td id="description"></td>
+		  			</tr>
+		  			<tr>
+		  				<td><b>Request Date:</b></td>
+		  				<td id="requestDate"></td>
+		  			</tr>
+		  			<tr>
+		  				<td><b>Approved Date:</b></td>
+		  				<td id="approvalDate"></td>
+		  			</tr>
+		  			<tr>
+		  				<td><b>Request status:</b></td>
+		  				<td id="statusId"></td>
+		  			</tr>
+		  		</table>
+
+			    <label><b>Receipt image:</b></label>
+        		<img src = "receipt" id="receipt" alt="RGB Image" height="210" width="350">   
+		  	</div>
+	  </div>	
+	</header>
+	
+    <!-- Footer -->
+	<div id="footer" style ="text-align:right;">
+	    <footer >Copyright &copy; Revature MSA Project1 2021 __   </footer>
+	</div>
+	
+	<script src = "/ProjectPipeline/scripts/RequestsDetail.js"></script>
+
+</body>
+</html>	

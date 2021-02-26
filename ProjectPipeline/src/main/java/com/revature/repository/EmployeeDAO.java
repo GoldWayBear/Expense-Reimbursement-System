@@ -18,7 +18,10 @@ public interface EmployeeDAO {
 	public Employee findEmployeeById(int employeeId);
 	public Employee findEmployeeByUsername(String username);
 	public Employee findEmployeeByEmail(String email);
-		
+
+	public List findAllEmployeeWithMgrId();
+	public List findEmployeesWithMgrByEmplRoleId(int employeeId, int roleId);
+	
 	public int addEmployee(Employee employee);
 	public boolean updateEmployee(Employee employee);
 	public boolean deleteEmployeeById(int employeeId);

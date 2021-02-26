@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reimbursement System</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+	<link rel="stylesheet" href="/ProjectPipeline/styles/reimb.css"> 
+	
+<style>
+.container {
+  position: absolute;
+  left: 25%;
+  max-width: 400px;
+  padding: 4px;
+  background-color: white;
+  height:100%;
+  
+  column-gap: 10em;
+}
+</style>	
+</head>
+
+<body>
+	<div class="navbar">
+	  <div class="dropdown">
+	    <button class="dropbtn">Reimbursement 
+	      <i class="fa fa-caret-down"></i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a href="/ProjectPipeline/webpages/employee/newRequest.html">New Request</a>
+	      <a href="/ProjectPipeline/webpages/employee/home.html">Request Info</a>
+	    </div>
+	  </div> 
+		  <a href="/ProjectPipeline/app/employee/profile">Profile</a> 
+		  <a href="/ProjectPipeline/app/logout">Log out</a>
+	  <div style="margin:auto; color: white;text-align:right;"> <h2>Employee's page</h2></div>
+	</div>
+
+	<!-- Header -->
+	<header>
+		<div class="bg-img">
+			<div>
+			<h2 style ="color:white;">Reimbursement System<small style ="color:white;">--new request</small></h2>
+			</div>
+			
+		  	<form  action="/ProjectPipeline/employee/ReimbRequestServlet" method="post"  class="container" enctype="multipart/form-data">
+		    	<label for="location"><b>Location:</b></label>
+		    	​<textarea id="location" name="location" rows="3" cols="90"></textarea>
+		
+				<label></label>
+		    	<br><label for="cost"><b>Cost:</b></label>
+		    	<input type="number" step="0.01" placeholder="Enter amount" id="cost" name="cost" required="required"/>
+	
+				<label></label>
+		    	<br><br><label for="description"><b>Description:</b></label>
+		    	​<textarea id="description" name="description" rows="5" cols="90"></textarea>
+	
+				<label></label>
+			    <br><label for="receipt"><b>Receipt image:</b></label>
+		        <br><input type="file" id="receipt" name="receipt" accept="image/*"/>	
+		          
+		    	<input type="hidden" id="roleid" name="roleid" value="1"/>
+		    	<br><br><button style="width: 40%;" type="submit" name="submit" id="submit"  class="btn">Submit</button>
+		  	</form>
+	  </div>	
+	</header>
+	
+    <!-- Footer -->
+	<div id="footer" style ="text-align:right;">
+	    <footer >Copyright &copy; Revature MSA Project1 2021 __   </footer>
+	</div>
+	<!-- 
+	<script src = "/ProjectPipeline/scripts/ReimbRequestsFromJson.js"></script>
+	 -->
+</body>
+</html>	

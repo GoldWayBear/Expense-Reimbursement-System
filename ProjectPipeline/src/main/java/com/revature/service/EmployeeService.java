@@ -42,6 +42,14 @@ public class EmployeeService {
 		return this.emplDAO.findEmployeeByEmail(email);
 	}
 		
+	public List findAllEmployeeWithMgrId() {
+		return this.emplDAO.findAllEmployeeWithMgrId();
+	}
+	
+	public List findEmployeesWithMgrByEmplRoleId(int employeeId, int roleId) {
+		return this.emplDAO.findEmployeesWithMgrByEmplRoleId(employeeId, roleId);
+	}
+	
 	public int addEmployee(Employee employee) {
 		return this.emplDAO.addEmployee(employee);
 	}

@@ -48,10 +48,11 @@ public class EmployeeRoleDAOTest {
 	@Test 
 	public void testAddEmployeeRole() {
 		EmployeeRole vp = new EmployeeRole();
+		/*
 		vp.setRole("Director");
 		vp.setRoleId(3);
 		Assert.assertEquals(true, emplRoleDaoImpl.addRole(vp));
-
+		*/
 		vp.setRole("VIP");
 		vp.setRoleId(4);
 		Assert.assertEquals(true, emplRoleDaoImpl.addRole(vp));
@@ -69,7 +70,7 @@ public class EmployeeRoleDAOTest {
 		LOGGER.info("testing for updating a role.");
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test 
 	public void testFindAllEmployeeRoles() {	
 		List<EmployeeRole> roles = emplRoleDaoImpl.findAllRoles();		

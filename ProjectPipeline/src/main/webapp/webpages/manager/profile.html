@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reimbursement System</title>
+	<meta charset="UTF-8"/>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+	<link rel="stylesheet" href="/ProjectPipeline/styles/reimb.css"> 
+	
+	<style>
+	.container {
+	  position: absolute;
+	  left: 25%;
+	  max-width: 400px;
+	  padding: 4px;
+	  background-color: white;
+	  height:100%;
+	  
+	  column-gap: 10em;
+	}	
+	button{
+		position:center;
+		width:30%;
+		
+	}
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+	  <div class="dropdown">
+	    <button class="dropbtn">Reimbursement 
+	      <i class="fa fa-caret-down"></i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a href="/ProjectPipeline/webpages/manager/newRequest.html">New Request</a>
+	      <a href="/ProjectPipeline/webpages/manager/home.html">Request Info</a>
+	    </div>
+	  </div> 
+	  <div class="dropdown">
+	    <button class="dropbtn">Management 
+	      <i class="fa fa-caret-down"></i>
+	    </button>
+	    <div class="dropdown-content">
+	      <a href="/ProjectPipeline/webpages/manager/register.html">Register</a>
+	      <a href="/ProjectPipeline/app/manager/employeeManagement?optionid=1">Employee Info</a>
+	    </div>
+	  </div> 
+	  <a href="/ProjectPipeline/app/manager/profile">Profile</a> 
+	  <a href="/ProjectPipeline/app/logout">Log out</a>
+	  <div style="margin:auto; color: white;text-align:right;"> <h2>Manager's page</h2></div>
+	</div>
+
+	<!-- Header -->
+	<header>
+		<div class="bg-img">
+		<div>
+		<h2 style ="color:white;">Reimbursement System<small style ="color:white;">--profile</small></h2>
+		</div>
+	  	<form action="/ProjectPipeline/app/manager/profileUpdate" method="post" class="container">
+	    	<label for="uname"><b>Username:</b>
+	    	<input type="text" placeholder="user name" name="username" id="username" required>
+	    	<label for="psw"><b>Password</b></label>
+	    	<input type="password" placeholder="Password" name="password" id="password" required>
+	    	<label for="first"><b>First name</b></label>
+	    	<input type="text" placeholder="first name" name="firstname" id ="firstname" required>
+	    	<label for="lastname"><b>Last name</b></label>
+	    	<input type="text" placeholder="last name" name="lastname" id="lastname" required>
+	    	<label for="email"><b>Email</b></label>
+	    	<input type="text" placeholder="email" name="email" id ="email" required>		
+			<label for="wyears">Work Years(between 0 and 100):</label>
+			<input type="number" id="workyears" name="workyears" min="0" max="100">	
+			    					
+	    	<button type="submit" name="submit" id="submit"  class="btn">Update</button>
+	  	</form>
+		</div>			  
+	  </div>	
+	</header>
+	
+    <!-- Footer -->
+	<div id="footer" style ="text-align:right;">
+	    <footer >Copyright &copy; Revature MSA Project1 2021 __   </footer>
+	</div>
+	<script src = "/ProjectPipeline/scripts/profileMgr.js"></script>
+</body>
+</html>	

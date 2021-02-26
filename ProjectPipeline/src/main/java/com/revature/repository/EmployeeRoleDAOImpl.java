@@ -8,13 +8,12 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
-import com.revature.model.Employee;
 import com.revature.model.EmployeeRole;
-import com.revature.util.HibernateUtil;
+import com.revature.util.HibernateSessionFactory;
 
 /**
  * @author Jinwei Xiong
@@ -22,7 +21,6 @@ import com.revature.util.HibernateUtil;
  */
 public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 	private static final Logger LOGGER = LogManager.getFormatterLogger(EmployeeRoleDAOImpl.class);
-	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 	private Session currentSession;
 
 	
@@ -35,9 +33,14 @@ public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 		// TODO Auto-generated method stub
 		List<EmployeeRole> emplList = new ArrayList<EmployeeRole>();
 		try {
-	        currentSession = sessionFactory.openSession();
+	        currentSession = HibernateSessionFactory.getSession();
+	        currentSession.beginTransaction();	        
 	        emplList = currentSession.createQuery("From EmployeeRole").getResultList();
-		}catch(Exception e) {
+	        currentSession.getTransaction().commit();
+		}catch(HibernateException e) {
+			if(currentSession.getTransaction() != null) {
+				currentSession.getTransaction().rollback();				
+			}			
 			LOGGER.error("Error at finding all employeeroles.",e);
 			e.printStackTrace();
 			emplList = null;
@@ -52,14 +55,19 @@ public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 		// TODO Auto-generated method stub
 		EmployeeRole role = null;
 		try {
-	        currentSession = sessionFactory.openSession();
+	        currentSession = HibernateSessionFactory.getSession();
+	        currentSession.beginTransaction();	        	        
 	        //empl_role
 	        String hql = "Select * From project1.empl_role as emplRole where emplRole.roleId=:roleId";
 	        //String hql = "Select * From EmployeeRole where roleId=:roleId";
 			Query<EmployeeRole> query = currentSession.createNativeQuery(hql,EmployeeRole.class);
 			query.setParameter("roleId", roleid);
 			role = query.uniqueResult();
-		}catch(Exception e) {
+	        currentSession.getTransaction().commit();			
+		}catch(HibernateException e) {
+			if(currentSession.getTransaction() != null) {
+				currentSession.getTransaction().rollback();				
+			}			
 			LOGGER.error("Error at finding role by role ID.",e);
 			e.printStackTrace();
 		}finally {
@@ -72,7 +80,7 @@ public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 	public boolean addRole(EmployeeRole role) {
 		// TODO Auto-generated method stub
 		try {
-	        currentSession = sessionFactory.openSession();
+	        currentSession = HibernateSessionFactory.getSession();
 	        currentSession.beginTransaction();
 	        LOGGER.debug(currentSession.isConnected());
 	        System.out.println("currentSession connected:"+currentSession.isConnected());
@@ -80,7 +88,7 @@ public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 	        currentSession.getTransaction().commit();
 			LOGGER.info("Successfully adding a role.");
 			return true;
-		}catch(Exception e) {
+		}catch(HibernateException e) {
 			if(currentSession.getTransaction() != null) {
 				LOGGER.error("Error at adding a role, transaction is Being Rolled Back.",e);
 				currentSession.getTransaction().rollback();				
@@ -97,14 +105,14 @@ public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 		// TODO Auto-generated method stub
 		try {
 			// Getting Session Object From SessionFactory
-	        currentSession = sessionFactory.openSession();
+	        currentSession = HibernateSessionFactory.getSession();
 	        // Getting Transaction Object From Session Object
 	        currentSession.beginTransaction();
 	        currentSession.update(role);
 	        currentSession.getTransaction().commit();
 			LOGGER.info("Successfully updating a role.");
 			return true;
-		}catch(Exception e) {
+		}catch(HibernateException e) {
 			if(currentSession.getTransaction() != null) {
 				LOGGER.error("Error at updating a role, transaction is Being Rolled Back.",e);
 				currentSession.getTransaction().rollback();				
@@ -120,13 +128,9 @@ public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 	public boolean deleteRoleById(int roleid) {
 		try {
 			// Getting Session Object From SessionFactory
-			//currentSession.close();
-	        currentSession = sessionFactory.openSession();
-	        // Getting Transaction Object From Session Object
-	        currentSession.beginTransaction();
 	        EmployeeRole role = findEmployeeRoleById(roleid);
 
-	        currentSession = sessionFactory.openSession();
+	        currentSession = HibernateSessionFactory.getSession();
 	        currentSession.beginTransaction();	        
 	        System.out.println("DADADA: "+role.getRoleId() +" , "+role.getRole());
 	        if(role !=null) {
@@ -138,7 +142,7 @@ public class EmployeeRoleDAOImpl implements EmployeeRoleDAO {
 				LOGGER.info("This role Id doesn't exsit.");
 				return false;	        	
 	        }
-		}catch(Exception e) {
+		}catch(HibernateException e) {
 			if(currentSession.getTransaction() != null) {
 				LOGGER.error("Error at deleting a role, transaction is Being Rolled Back.",e);
 				currentSession.getTransaction().rollback();				

@@ -73,7 +73,7 @@ public class EmployeeServiceTest {
 		MockitoAnnotations.openMocks(this);
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test 
 	public void testfindAllEmployees() {
 		/*
@@ -93,7 +93,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findAllEmployees()");
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testFindEmployeeById() {
 		int employeeId = 2;
@@ -105,7 +105,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findEmployeeById()");
 	}
 
-	@Ignore
+	//@Ignore
 	@Test 
 	public void testFindEmployeesByUsername() {
 		List<Employee> mock_empls = new ArrayList<Employee>(Arrays.asList(
@@ -119,7 +119,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findEmployeesByUsername()");
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testFindEmployeeByUsername() {
 		String username = "e11";
@@ -131,19 +131,20 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for findEmployeeByUsername()");
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testFindEmployeeByEmail() {
 		String email = "e11";
 		Mockito.when(emplDaoImpl.findEmployeeByEmail(email)).thenReturn(
 				new Employee("e11","e11","e11","e11", "e11", 14,1)
 				);
-		Employee empl = emplServ.findEmployeeByUsername(email);
+		Employee empl = emplServ.findEmployeeByEmail(email);
+		System.out.println(empl.getEmail());
 		Assert.assertEquals("e11", empl.getEmail());		
 		LOGGER.info("testing for findEmployeeByEmail()");
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testAddEmployee() {
 		Employee employee = new Employee("e11","e11","e11","e11", "e11", 14,1);
@@ -153,7 +154,7 @@ public class EmployeeServiceTest {
 		LOGGER.info("testing for addEmployee()");
 	}
 		
-	@Ignore
+	//@Ignore
 	@Test
 	public void testUpdateEmployee() {
 		Employee employee = new Employee("e11","e11","e11","e11", "e11", 14,1);
