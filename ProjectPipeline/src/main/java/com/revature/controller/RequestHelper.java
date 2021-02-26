@@ -430,7 +430,9 @@ public class RequestHelper {
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
 
-		response.getWriter().write("enter login");
+		response.getWriter().write("enter login-- username:" +username );
+		return;
+		/*
 	    EmployeeService emplServ = new EmployeeService();
 	    Employee empl = emplServ.login(username, password);
 		response.getWriter().write(empl.toString());
@@ -457,7 +459,8 @@ public class RequestHelper {
 	    }else {
 	    	response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);	    	
 			response.sendRedirect("/ProjectPipeline/index.html");
-	    }								
+	    }			
+	    */					
 	}
 	
 	public static void doNewRequest(HttpServletRequest request, HttpServletResponse response)
