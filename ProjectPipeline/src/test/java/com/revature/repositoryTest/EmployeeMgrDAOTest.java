@@ -67,7 +67,7 @@ public class EmployeeMgrDAOTest {
 	}
 	
 	//passed
-	//@Ignore
+	@Ignore
 	@Test 
 	public void testFindManagersByEmplId() {	
 		int emplId =10;
