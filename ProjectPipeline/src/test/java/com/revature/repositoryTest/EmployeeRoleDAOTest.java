@@ -70,7 +70,7 @@ public class EmployeeRoleDAOTest {
 		LOGGER.info("testing for updating a role.");
 	}
 	
-	//@Ignore
+	@Ignore
 	@Test 
 	public void testFindAllEmployeeRoles() {	
 		List<EmployeeRole> roles = emplRoleDaoImpl.findAllRoles();		

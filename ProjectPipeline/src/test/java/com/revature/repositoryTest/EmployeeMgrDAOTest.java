@@ -45,7 +45,7 @@ public class EmployeeMgrDAOTest {
 	}	
 	
 	//passed
-	//@Ignore
+	@Ignore
 	@Test 
 	public void testAddEmployeeMgr() {
 //		Assert.assertEquals(true, emplMgrDao.addEmployeeMgr(8, 9));
@@ -59,7 +59,7 @@ public class EmployeeMgrDAOTest {
 	}
 
 	//passed
-	//@Ignore
+	@Ignore
 	@Test
 	public void testDeleteEmployeeMgr() {
 		Assert.assertTrue(emplMgrDao.deleteEmployeeMgr(1000, 1001));
@@ -79,7 +79,7 @@ public class EmployeeMgrDAOTest {
 	}
 	
 	//passed
-	//@Ignore
+	@Ignore
 	@Test
 	public void testFindEmployeesByMgrId() {
 		int mgrId =8;
