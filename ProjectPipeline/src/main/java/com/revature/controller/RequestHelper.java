@@ -429,13 +429,14 @@ public class RequestHelper {
 			throws ServletException, IOException{
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
-
-		response.getWriter().write("enter login-- username:" +username );
-
-		
+	
 	    EmployeeService emplServ = new EmployeeService();
-	    Employee empl = emplServ.login(username, password);
-		response.getWriter().write(empl.toString());
+	    //Employee empl = emplServ.login(username, password);
+	    List<Employee> empls = emplServ.findAllEmployees();
+	    for(Employee empl:empls) {
+			response.getWriter().write(empl.toString());	    	
+	    }
+	    
 		return;
 		/*
 	    if(empl != null) {
