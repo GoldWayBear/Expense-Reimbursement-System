@@ -430,8 +430,10 @@ public class RequestHelper {
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
 
+		response.getWriter().write("enter login");
 	    EmployeeService emplServ = new EmployeeService();
 	    Employee empl = emplServ.login(username, password);
+		response.getWriter().write(empl.toString());
 	    if(empl != null) {
 	    	int roleId = empl.getRoleId();
 	    	switch(roleId) {
