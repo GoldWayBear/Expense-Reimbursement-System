@@ -431,11 +431,13 @@ public class RequestHelper {
 		final String password = request.getParameter("password");
 
 		response.getWriter().write("enter login-- username:" +username );
-		return;
-		/*
+
+		
 	    EmployeeService emplServ = new EmployeeService();
 	    Employee empl = emplServ.login(username, password);
 		response.getWriter().write(empl.toString());
+		return;
+		/*
 	    if(empl != null) {
 	    	int roleId = empl.getRoleId();
 	    	switch(roleId) {
