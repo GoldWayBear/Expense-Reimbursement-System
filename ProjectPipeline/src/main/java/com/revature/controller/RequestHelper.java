@@ -431,14 +431,18 @@ public class RequestHelper {
 		final String password = request.getParameter("password");
 	
 	    EmployeeService emplServ = new EmployeeService();
-	    //Employee empl = emplServ.login(username, password);
+	    Employee empl = emplServ.login(username, password);
+	    
+	    /*
 	    List<Employee> empls = emplServ.findAllEmployees();
 	    for(Employee empl:empls) {
 			response.getWriter().write(empl.toString());	    	
 	    }
 	    
 		return;
-		/*
+		*/
+	    
+		
 	    if(empl != null) {
 	    	int roleId = empl.getRoleId();
 	    	switch(roleId) {
@@ -463,7 +467,7 @@ public class RequestHelper {
 	    	response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);	    	
 			response.sendRedirect("/ProjectPipeline/index.html");
 	    }			
-	    */					
+	    				
 	}
 	
 	public static void doNewRequest(HttpServletRequest request, HttpServletResponse response)

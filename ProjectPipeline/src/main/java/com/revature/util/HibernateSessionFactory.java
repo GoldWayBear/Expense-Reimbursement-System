@@ -71,11 +71,27 @@ public class HibernateSessionFactory {
     
 	public static Session getSession() {
 		if(sessionFactory == null) {
+			
 			sessionFactory = new Configuration().configure()
 					.setProperty("hibernate.connection.url", System.getenv("DBURL"))
 					.setProperty("hibernate.connection.username", System.getenv("DBUsername"))
 					.setProperty("hibernate.connection.password", System.getenv("DBPassword"))
 					.buildSessionFactory();
+			
+			/*
+        	Configuration configObj = new Configuration();
+        	configObj.configure("hibernate.cfg.xml");
+        	configObj.setProperty("hibernate.connection.url", System.getenv("DBURL"));
+        	configObj.setProperty("hibernate.connection.username", System.getenv("DBUsername"));
+        	configObj.setProperty("hibernate.connection.password", System.getenv("DBPassword"));
+ 
+        	// Since Hibernate Version 4.x, ServiceRegistry Is Being Used
+        	ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
+            sessionFactory = new MetadataSources( serviceRegistryObj )
+                        .buildMetadata()
+                        .buildSessionFactory();			
+            */
+			
 		}
 		
 		return sessionFactory.getCurrentSession();
