@@ -664,8 +664,10 @@ public class RequestHelper {
 				}else{
 					if(option == 2) {
 						req.setStatusId(2);//approval
+						req.setApprovalDate(Date.valueOf(LocalDate.now()));
 					}else {
 						req.setStatusId(3);//denied					
+						req.setApprovalDate(Date.valueOf(LocalDate.now()));
 					}
 					
 					if(reqServ.updateReimbRequest(req)) {
