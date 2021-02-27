@@ -71,38 +71,11 @@ public class HibernateSessionFactory {
     
 	public static Session getSession() {
 		if(sessionFactory == null) {
-			/*
 			sessionFactory = new Configuration().configure()
 					.setProperty("hibernate.connection.url", System.getenv("DBURL"))
 					.setProperty("hibernate.connection.username", System.getenv("DBUsername"))
 					.setProperty("hibernate.connection.password", System.getenv("DBPassword"))
-					.buildSessionFactory();
-			*/
-			sessionFactory = new Configuration().configure()
-					.setProperty("hibernate.connection.url", "jdbc:postgresql://jan25instance.cwf2xyclvqxz.us-east-1.rds.amazonaws.com:5432/postgres")
-					.setProperty("hibernate.connection.username", "postgres")
-					.setProperty("hibernate.connection.password", "password2021")
-					.buildSessionFactory();
-			
-			/*
-		    Configuration configuration = new Configuration();
-		    configuration.setProperty("hibernate.connection.url", System.getenv("DBURL"));                                
-		    configuration.setProperty("hibernate.connection.username", System.getenv("DBUsername"));     
-		    configuration.setProperty("hibernate.connection.password", System.getenv("DBPassword"));
-		
-		    StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-		    sessionFactory = configuration.buildSessionFactory(builder.build());           
-		 	*/
-			
-			/*
-        	ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                    .configure("hibernate.cfg.xml")
-                    .build();
-
-            sessionFactory = new MetadataSources( serviceRegistry )
-                        .buildMetadata()
-                        .buildSessionFactory();
-			*/
+					.buildSessionFactory();			
 		}
 		
 		return sessionFactory.getCurrentSession();
