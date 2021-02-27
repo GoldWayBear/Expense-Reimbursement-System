@@ -21,9 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 
 import com.revature.model.Employee;
 import com.revature.model.ReimbRequest;
@@ -432,17 +433,7 @@ public class RequestHelper {
 	
 	    EmployeeService emplServ = new EmployeeService();
 	    Employee empl = emplServ.login(username, password);
-	    
-	    /*
-	    List<Employee> empls = emplServ.findAllEmployees();
-	    for(Employee empl:empls) {
-			response.getWriter().write(empl.toString());	    	
-	    }
-	    
-		return;
-		*/
-	    
-		
+	    	
 	    if(empl != null) {
 	    	int roleId = empl.getRoleId();
 	    	switch(roleId) {
@@ -553,7 +544,7 @@ public class RequestHelper {
 
 	private static void doRegister(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
-		if(request.getSession().getAttribute("employeeId") != null) {			
+		if(request.getSession().getAttribute("employeeId") != null) {	
 			try {
 				int mgrId = (int)request.getSession().getAttribute("employeeId");
 				Employee empl = new Employee();
@@ -568,75 +559,52 @@ public class RequestHelper {
 				workyears = Integer.parseInt(request.getParameter("workyears"));
 				empl.setWorkyears(workyears);
 			
-				System.out.println("In do Register: "+request.getParameter("username")+" password:"+request.getParameter("password"));
+				//System.out.println("In do Register: "+request.getParameter("username")+" password:"+request.getParameter("password"));
 				int emplId = new EmployeeService().addEmployee(empl);
 				if(emplId>0) {
 					if(new EmployeeMgrService().addEmployeeMgr(mgrId, emplId)) {
-						//doEmail(request, response);
-				    	response.sendRedirect("/ProjectPipeline/webpages/manager/register.html");							    							
+				    	//response.sendRedirect("/ProjectPipeline/webpages/manager/register.html");	
+						String url = "/ProjectPipeline/app/manager/employeeInfo?employeeId="+emplId;
+						System.out.println(url);
+						//request.getRequestDispatcher(url).forward(request, response);
+						response.sendRedirect(url);
+						doEmail(request, response);
 					}
+				}else {
+			    	response.sendRedirect("/ProjectPipeline/webpages/manager/register.html");						
 				}
 			}catch(Exception e) {
 		    	e.printStackTrace();
 		    }
 		}	
+		
 	}
 
 	private static void doEmail(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
-	      // Recipient's email ID 
-	      //String to = request.getParameter("email");	 
-	      String to = "jinwei.xiong@rutgers.edu";	 
-	      // Sender's email ID 
-	      //String from = (String)request.getSession().getAttribute("email");	 
-	      String from = "jinwei.xiong@revature.net";
-	      // Assuming sending email from localhost
-	      //String host = "localhost";	 
-	      // Get system properties
-	      //Properties properties = System.getProperties();
-	      String host = "mail.man.com";
-	      String port = "25";
-	      
-	      Properties properties = new Properties();
-	      properties.put("mail.smtp.host", host);
-	      properties.put("mail.smtp.port", port);
-	      properties.put("mail.smtp.auth", "true");
-	      properties.put("mail.smtp.starttls.enable", "true");
-	      properties.put("mail.smtp.ssl.trust","mail.man.com");   
-	      // Setup mail server
-	      properties.setProperty("mail.smtp.host", host);	 
-	      // Get the default Session object.
-	      Session session = Session.getDefaultInstance(properties);	      
-	      // Set response content type
-	      response.setContentType("text/html");
-	      try {         
-	         // Create a default MimeMessage object.
-	         MimeMessage message = new MimeMessage(session);	         
-	         // Set From: header field of the header.
-	         message.setFrom(new InternetAddress(from));	         
-	         // Set To: header field of the header.
-	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-	         // Set Subject: header field
-	         message.setSentDate(Date.valueOf(LocalDate.now()));
-	         message.setSubject("This is the welcome letter!");
-	         // Send the actual HTML message, as big as you like
-	         String text = "<h1>Please keep your username and password</h1><p> Username :"
-	        		 	+request.getParameter("username")+"</p><p> Password :"
-	        		 	+request.getParameter("password")+"</p>";
-	         /*
-	         message.setContent(text, "text/html");	         
-	         // Send message
-	         Transport.send(message);
-	         */
-	         Multipart mp = new MimeMultipart();
-	         MimeBodyPart htmlPart = new MimeBodyPart();
-	         htmlPart.setContent(text, "text/html");
-	         mp.addBodyPart(htmlPart);
-	         message.setContent(mp);
-	         Transport.send(message);
-	      } catch (MessagingException mex) {
-	         mex.printStackTrace();
-	      }
+		try {
+			String username = System.getenv("GMAILUSER");
+			String password = System.getenv("GMAILPWD");
+			//System.out.println(username);
+			//System.out.println(password);
+			Email email = new SimpleEmail();
+			email.setHostName("smtp.googlemail.com");
+			email.setSmtpPort(465);
+			email.setAuthenticator(new DefaultAuthenticator(username, password));
+			email.setSSLOnConnect(true);
+			email.setFrom(username);
+			email.setSubject("Welcome to team");
+			String msg = "This is a welcome letter from our management.\n";
+			msg += "Your email : "+ "username@globalmail.com\n";
+			msg += "Your temporal password: 12345_6_7_8\n";
+			msg += "This is a test mail ... :-)";
+			email.setMsg(msg);
+			String toEmail = request.getParameter("email");
+			email.addTo(toEmail);
+			email.send();
+		}catch(EmailException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static void doOptionOnRequest(HttpServletRequest request, HttpServletResponse response)
