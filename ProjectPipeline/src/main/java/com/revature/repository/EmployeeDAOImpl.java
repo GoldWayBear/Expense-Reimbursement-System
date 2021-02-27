@@ -104,12 +104,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		Employee employee = null;
 		try {
 	        currentSession = HibernateSessionFactory.getSession();
+			LOGGER.info("In Employee DAO: get current Session");
 	        currentSession.beginTransaction();	        	        	        	        
+			LOGGER.info("In Employee DAO: get beginTransaction");
 	        String hql = "Select * From project1.employee as empl where empl.username=:username";
 			Query<Employee> query = currentSession.createNativeQuery(hql,Employee.class);
+			LOGGER.info("In Employee DAO: createNativeQuery");
 			query.setParameter("username", username);
+			LOGGER.info("In Employee DAO: setParameter");
 			employee = (Employee)(query.uniqueResult());
+			LOGGER.info("In Employee DAO: query.uniqueResult()");
 	        currentSession.getTransaction().commit();
+			LOGGER.info("In Employee DAO: commit()");
 		}catch(HibernateException e) {
 			currentSession.getTransaction().rollback();				
 			LOGGER.error("Error at finding employee by user name.",e);
