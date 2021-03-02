@@ -6,7 +6,7 @@ function grabRequestsFromJson(){
             //JSON.parse is a convenience function for parsing JSON as a JavaScript object
             let request = JSON.parse(xhr.response)
 			
-			alert(request.reimbReqId)
+			//alert(request.reimbReqId)
 			document.getElementById("reimbReqId").innerText = request.reimbReqId
 			document.getElementById("employeeId").innerText = request.employeeId
 			document.getElementById("location").innerText = request.location
