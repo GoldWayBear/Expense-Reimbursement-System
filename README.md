@@ -20,7 +20,8 @@ Java, JavaScript, AJAX, Servlets, HTML/CSS, JDBC, SQL, Hibernate, JUnit, Mockito
 4. Set up Apache tomcat and Jenkins in EC2
 5. Set up CI/CD in Jenkins by using Maven Integration,Slack Notification,Github Integration and	Deploy to Container
   
-# In windows, using Git Bash for the commands  
+# In windows
+using Git Bash for the commands  
 
 # Usage
 Go to web page:
